@@ -1,0 +1,18 @@
+
+
+# add by tts at 2023.02.06
+
+build/*
+*_app
+release/*
+.vscode/
+dataset_analyser/*
+# 忽略所有子目录下.o文件
+**/*.o
+**/*.d
+**/*.crf
+*/build/*
+.vscode/*
+**/*_app
+.~*.xlsx
+*.pyc
