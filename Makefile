@@ -68,6 +68,11 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c
 
+LVGL = lvgl
+# 只编译非 thorvg 的 .c 文件
+LVGL_SOURCES := $(shell find $(LVGL) -name "*.c" -not -path "lvgl/lvgl/src/libs/thorvg/*")
+C_SOURCES += $(LVGL_SOURCES)
+
 # ASM sources
 ASM_SOURCES =  \
 startup_stm32f103xe.s
@@ -134,10 +139,19 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Include
 
 
+LVGL_INC_DIRS := $(shell find $(LVGL) -type d)
+LVGL_INC_FLAGS := $(addprefix -I,$(LVGL_INC_DIRS))
+
+C_INCLUDES += $(LVGL_INC_FLAGS)
+
+
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
 CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+CFLAGS += -DRAPIDJSON_HAS_STDINT_H=1
+CFLAGS += -DRAPIDJSON_RAPIDJSON_H_
+CFLAGS += -DLV_CONF_INCLUDE_SIMPLE
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
