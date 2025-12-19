@@ -226,13 +226,33 @@ static bool touchpad_is_pressed(void)
 
 uint16_t xdip;
 uint16_t ydip;
+#define TOUCH_X_MIN 150
+#define TOUCH_X_MAX 3850
+#define TOUCH_Y_MIN 120
+#define TOUCH_Y_MAX 4000
+
+#define LCD_WIDTH  480
+#define LCD_HEIGHT 320
 /*Get the x and y coordinates if the touchpad is pressed*/
 static void touchpad_get_xy(lv_coord_t * x, lv_coord_t * y)
 {
     /*Your code comes here*/
     uint16_t x1,y1;
-    TP_Read_XY(&x1,&y1);
-    printf("x1:%d y1:%d\r\n",x1,y1);
+
+    TP_Read_XY(&y1,&x1);
+    // printf("x1:%4d y1:%4d\r\n",x1,y1);
+
+    // 线性映射到屏幕坐标
+    x1 = (uint32_t)(LCD_WIDTH) * (x1 - TOUCH_X_MIN) / (TOUCH_X_MAX - TOUCH_X_MIN);
+    y1 = (uint32_t)(LCD_HEIGHT) * (y1 - TOUCH_Y_MIN) / (TOUCH_Y_MAX - TOUCH_Y_MIN);
+    // 边界保护
+    if (x1 < 0) x1 = 0;
+    if (x1 >= LCD_WIDTH)  x1 = LCD_WIDTH - 1;
+    x1 = LCD_WIDTH-1 - x1;
+    if (y1 < 0) *y = 0;
+    if (y1 >= LCD_HEIGHT) y1 = LCD_HEIGHT - 1;
+
+    // printf(" x:%4d  y:%4d\r\n",x1,y1);
     (*x) = x1;
     xdip = x1;
     (*y) = y1;

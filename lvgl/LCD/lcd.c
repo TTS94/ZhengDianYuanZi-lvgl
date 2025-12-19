@@ -2095,6 +2095,7 @@ void LCD_Init(void)
     // LCD_LED = 1;                //��������
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
     LCD_Clear(WHITE);
+    printf("lcddev.width: %d, lcddev.height: %d\r\n", lcddev.width, lcddev.height);
     printf("%s end\r\n", __func__);
 }  
 //��������
