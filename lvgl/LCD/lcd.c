@@ -595,35 +595,35 @@ void LCD_Set_Window(uint16_t sx, uint16_t sy, uint16_t width, uint16_t height)
     }
 }
 
-//SRAM�ײ�������ʱ��ʹ�ܣ����ŷ���
-//�˺����ᱻHAL_SRAM_Init()����
-//hsram:SRAM���
-void HAL_SRAM_MspInit(SRAM_HandleTypeDef *hsram)
-{
-    GPIO_InitTypeDef GPIO_Initure;
+// //SRAM�ײ�������ʱ��ʹ�ܣ����ŷ���
+// //�˺����ᱻHAL_SRAM_Init()����
+// //hsram:SRAM���
+// void HAL_SRAM_MspInit(SRAM_HandleTypeDef *hsram)
+// {
+//     GPIO_InitTypeDef GPIO_Initure;
 
-    __HAL_RCC_FSMC_CLK_ENABLE();    //ʹ��FSMCʱ��
-    __HAL_RCC_GPIOD_CLK_ENABLE();   //ʹ��GPIODʱ��
-    __HAL_RCC_GPIOE_CLK_ENABLE();   //ʹ��GPIOEʱ��
-    __HAL_RCC_GPIOG_CLK_ENABLE();   //ʹ��GPIOGʱ��
+//     __HAL_RCC_FSMC_CLK_ENABLE();    //ʹ��FSMCʱ��
+//     __HAL_RCC_GPIOD_CLK_ENABLE();   //ʹ��GPIODʱ��
+//     __HAL_RCC_GPIOE_CLK_ENABLE();   //ʹ��GPIOEʱ��
+//     __HAL_RCC_GPIOG_CLK_ENABLE();   //ʹ��GPIOGʱ��
 
-    //��ʼ��PD0,1,4,5,8,9,10,14,15
-    GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_8|\
-                     GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_14|GPIO_PIN_15;
-    GPIO_Initure.Mode=GPIO_MODE_AF_PP;      //���츴��
-    GPIO_Initure.Pull=GPIO_PULLUP;          //����
-    GPIO_Initure.Speed=GPIO_SPEED_FREQ_HIGH;//����
-    HAL_GPIO_Init(GPIOD,&GPIO_Initure);     //��ʼ��
+//     //��ʼ��PD0,1,4,5,8,9,10,14,15
+//     GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_8|\
+//                      GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_14|GPIO_PIN_15;
+//     GPIO_Initure.Mode=GPIO_MODE_AF_PP;      //���츴��
+//     GPIO_Initure.Pull=GPIO_PULLUP;          //����
+//     GPIO_Initure.Speed=GPIO_SPEED_FREQ_HIGH;//����
+//     HAL_GPIO_Init(GPIOD,&GPIO_Initure);     //��ʼ��
 
-    //��ʼ��PE7,8,9,10,11,12,13,14,15
-    GPIO_Initure.Pin=GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|\
-                     GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
-    HAL_GPIO_Init(GPIOE,&GPIO_Initure);
+//     //��ʼ��PE7,8,9,10,11,12,13,14,15
+//     GPIO_Initure.Pin=GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|\
+//                      GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
+//     HAL_GPIO_Init(GPIOE,&GPIO_Initure);
 
-    //��ʼ��PG0,12
-    GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_12;
-    HAL_GPIO_Init(GPIOG,&GPIO_Initure);
-}
+//     //��ʼ��PG0,12
+//     GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_12;
+//     HAL_GPIO_Init(GPIOG,&GPIO_Initure);
+// }
 
 //��ʼ��lcd
 //�ó�ʼ���������Գ�ʼ������ILI93XXҺ��,�������������ǻ���ILI9320��!!!
