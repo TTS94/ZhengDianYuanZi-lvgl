@@ -24,6 +24,12 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <stdlib.h>
+#include "lcd.h"
+#include "lvgl.h"
+#include "gui_guider.h"
+#include "lv_port_disp.h"
+#include "lv_port_indev.h"
+#include "lv_demo_widgets.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,6 +66,19 @@ void StartDefaultTask(void const * argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void lvglTask1ms(void const * argument){
+  while(1){
+    lv_tick_inc(1); // 告诉LVGL：时间过了1ms
+    osDelay(1);     // 延时1ms
+  }
+}
+
+void lvglTaskRun(void const * argument){
+  while(1){
+    lv_task_handler(); // 让LVGL处理任务
+    osDelay(5);         // 延时5ms
+  }
+}
 /* USER CODE END 0 */
 
 /**
@@ -115,10 +134,22 @@ int main(void)
   /* definition and creation of defaultTask */
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+  osThreadDef(lvglTask1ms, lvglTask1ms, osPriorityNormal, 0, 1024);
+  osThreadCreate(osThread(lvglTask1ms), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   printf("RTOS Kernel Started\r\n");
+  lv_init();               // 初始化LVGL库
+  lv_port_disp_init();     // 初始化显示驱动
+  // 初始化lvgl demo
+  lv_demo_widgets();
+  // LCD_Init();
+  // POINT_COLOR=RED;
+  // LCD_Clear(WHITE);
+  // POINT_COLOR=RED;
+  // LCD_ShowString(30,40,210,24,24,"WarShip STM32 ^_^");
+
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -148,12 +179,13 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -216,6 +248,7 @@ static void MX_GPIO_Init(void)
 {
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
 }

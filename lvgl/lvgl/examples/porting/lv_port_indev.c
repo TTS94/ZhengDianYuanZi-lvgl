@@ -4,7 +4,7 @@
  */
 
 /*Copy this file as "lv_port_indev.c" and set this value to "1" to enable content*/
-#if 0
+#if 1
 
 /*********************
  *      INCLUDES
@@ -12,6 +12,9 @@
 #include "lv_port_indev.h"
 #include <stdbool.h>
 #include <stdint.h>
+#include "lvgl.h"
+#include "touch.h"
+#include "lcd.h"
 /*********************
  *      DEFINES
  *********************/
@@ -93,6 +96,7 @@ void lv_port_indev_init(void)
     lv_indev_set_type(indev_touchpad, LV_INDEV_TYPE_POINTER);
     lv_indev_set_read_cb(indev_touchpad, touchpad_read);
 
+#if 0
     /*------------------
      * Mouse
      * -----------------*/
@@ -162,6 +166,7 @@ void lv_port_indev_init(void)
         {40, 100},  /*Button 1 -> x:40; y:100*/
     };
     lv_indev_set_button_points(indev_button, btn_points);
+#endif
 }
 
 /**********************
@@ -176,6 +181,7 @@ void lv_port_indev_init(void)
 static void touchpad_init(void)
 {
     /*Your code comes here*/
+    TP_Init();
 }
 
 /*Will be called by the library to read the touchpad*/
@@ -202,17 +208,27 @@ static void touchpad_read(lv_indev_t * indev_drv, lv_indev_data_t * data)
 static bool touchpad_is_pressed(void)
 {
     /*Your code comes here*/
+    if(TP_Scan((0)) != 0){
+        return true;
+    }
 
     return false;
 }
 
+extern uint16_t xdip;
+extern uint16_t ydip;
 /*Get the x and y coordinates if the touchpad is pressed*/
 static void touchpad_get_xy(int32_t * x, int32_t * y)
 {
     /*Your code comes here*/
-
-    (*x) = 0;
-    (*y) = 0;
+    uint16_t x1,y1;
+    TP_Read_XY(&x1,&y1);
+    (*x) = x1;
+    xdip = x1;
+    (*y) = y1;
+    ydip = y1;
+    // (*x) = 0;
+    // (*y) = 0;
 }
 
 /*------------------

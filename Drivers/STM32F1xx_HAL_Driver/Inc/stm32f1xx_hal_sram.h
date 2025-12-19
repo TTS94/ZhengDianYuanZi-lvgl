@@ -24,6 +24,8 @@
 extern "C" {
 #endif
 
+#include "stm32f103xe.h"
+
 #if defined(FSMC_BANK1)
 
 /* Includes ------------------------------------------------------------------*/

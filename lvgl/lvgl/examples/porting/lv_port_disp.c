@@ -11,18 +11,19 @@
  *********************/
 #include "lv_port_disp.h"
 #include <stdbool.h>
+#include "lcd.h"
 
 /*********************
  *      DEFINES
  *********************/
 #ifndef MY_DISP_HOR_RES
     #warning Please define or replace the macro MY_DISP_HOR_RES with the actual screen width, default value 320 is used for now.
-    #define MY_DISP_HOR_RES    320
+    #define MY_DISP_HOR_RES    480
 #endif
 
 #ifndef MY_DISP_VER_RES
     #warning Please define or replace the macro MY_DISP_VER_RES with the actual screen height, default value 240 is used for now.
-    #define MY_DISP_VER_RES    240
+    #define MY_DISP_VER_RES    320
 #endif
 
 #define BYTE_PER_PIXEL (LV_COLOR_FORMAT_GET_SIZE(LV_COLOR_FORMAT_RGB565)) /*will be 2 for RGB565 */
@@ -99,6 +100,7 @@ void lv_port_disp_init(void)
 static void disp_init(void)
 {
     /*You code here*/
+    LCD_Init();
 }
 
 volatile bool disp_flush_enabled = true;
@@ -117,6 +119,22 @@ void disp_disable_update(void)
     disp_flush_enabled = false;
 }
 
+// 假设你已定义了 LCD_SetWindow 函数（若没有，请看下方补充）
+void LCD_SetWindow(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
+{
+    LCD_WriteReg(0x2A, ((x1 >> 8) & 0xFF)); // Column Address Set
+    LCD_WriteReg(0x2A + 1, (x1 & 0xFF));
+    LCD_WriteReg(0x2A, ((x2 >> 8) & 0xFF));
+    LCD_WriteReg(0x2A + 1, (x2 & 0xFF));
+
+    LCD_WriteReg(0x2B, ((y1 >> 8) & 0xFF)); // Page Address Set
+    LCD_WriteReg(0x2B + 1, (y1 & 0xFF));
+    LCD_WriteReg(0x2B, ((y2 >> 8) & 0xFF));
+    LCD_WriteReg(0x2B + 1, (y2 & 0xFF));
+
+    LCD_WriteReg(0x2C, 0); // Memory Write
+}
+
 /*Flush the content of the internal buffer the specific area on the display.
  *`px_map` contains the rendered image as raw pixel map and it should be copied to `area` on the display.
  *You can use DMA or any hardware acceleration to do this operation in the background but
@@ -124,17 +142,29 @@ void disp_disable_update(void)
 static void disp_flush(lv_display_t * disp_drv, const lv_area_t * area, uint8_t * px_map)
 {
     if(disp_flush_enabled) {
-        /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
+        // /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
 
-        int32_t x;
-        int32_t y;
-        for(y = area->y1; y <= area->y2; y++) {
-            for(x = area->x1; x <= area->x2; x++) {
-                /*Put a pixel to the display. For example:*/
-                /*put_px(x, y, *px_map)*/
-                px_map++;
-            }
-        }
+        // int32_t x;
+        // int32_t y;
+        // for(y = area->y1; y <= area->y2; y++) {
+        //     for(x = area->x1; x <= area->x2; x++) {
+        //         /*Put a pixel to the display. For example:*/
+        //         /*put_px(x, y, *px_map)*/
+        //         px_map++;
+        //     }
+        // }
+        // /* 设置显示窗口 */
+        // LCD_SetWindow(area->x1, area->y1, area->x2, area->y2);
+
+        // /* 计算要写入的像素总数 */
+        // uint32_t size = lv_area_get_width(area) * lv_area_get_height(area);
+
+        // /* 通过 FSMC 快速写入像素数据（RGB565）*/
+        // uint16_t * pixels = (uint16_t *)px_map;
+        // for (uint32_t i = 0; i < size; i++) {
+        //     LCD_WR_DATA(pixels[i]);
+        // }
+        LCD_Color_Fill(area->x1, area->y1, area->x2, area->y2, (uint16_t *)px_map);
     }
 
     /*IMPORTANT!!!
