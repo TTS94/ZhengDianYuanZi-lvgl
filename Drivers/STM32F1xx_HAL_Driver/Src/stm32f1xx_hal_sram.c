@@ -115,8 +115,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 
-#include "stm32f103xe.h"
-
 #if defined(FSMC_BANK1)
 
 /** @addtogroup STM32F1xx_HAL_Driver

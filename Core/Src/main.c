@@ -26,7 +26,6 @@
 #include <stdlib.h>
 #include "lcd.h"
 #include "lvgl.h"
-#include "gui_guider.h"
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 #include "lv_demo_widgets.h"
@@ -67,16 +66,30 @@ void StartDefaultTask(void const * argument);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void lvglTask1ms(void const * argument){
+  int32_t cnt = 0;
+
   while(1){
     lv_tick_inc(1); // 告诉LVGL：时间过了1ms
     osDelay(1);     // 延时1ms
+    cnt++;
+    cnt %= 1000;
+    if(cnt == 0){
+      HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
+    }
   }
 }
 
 void lvglTaskRun(void const * argument){
+  int32_t cnt = 0;
+
   while(1){
     lv_task_handler(); // 让LVGL处理任务
     osDelay(5);         // 延时5ms
+    cnt++;
+    cnt %= 200;
+    if(cnt == 0){
+      HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    }
   }
 }
 /* USER CODE END 0 */
@@ -134,14 +147,17 @@ int main(void)
   /* definition and creation of defaultTask */
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
-  osThreadDef(lvglTask1ms, lvglTask1ms, osPriorityNormal, 0, 1024);
-  osThreadCreate(osThread(lvglTask1ms), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  osThreadDef(lgvlTaskInc, lvglTask1ms, osPriorityNormal, 0, 128);
+  osThreadCreate(osThread(lgvlTaskInc), NULL);
+  osThreadDef(lvglTaskRun, lvglTaskRun, osPriorityNormal, 0, 1024);
+  osThreadCreate(osThread(lvglTaskRun), NULL);
   printf("RTOS Kernel Started\r\n");
   lv_init();               // 初始化LVGL库
   lv_port_disp_init();     // 初始化显示驱动
+  lv_port_indev_init();   // 初始化输入设备驱动
   // 初始化lvgl demo
   lv_demo_widgets();
   // LCD_Init();
@@ -246,10 +262,33 @@ static void MX_USART1_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_5, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PE5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PB5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
