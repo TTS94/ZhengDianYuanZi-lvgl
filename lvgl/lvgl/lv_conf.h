@@ -279,7 +279,7 @@
  *-----------*/
 
 /*1: Show CPU usage and FPS count*/
-#define LV_USE_PERF_MONITOR 0
+#define LV_USE_PERF_MONITOR 1
 #if LV_USE_PERF_MONITOR
     #define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
 #endif
@@ -363,7 +363,7 @@
  *https://fonts.google.com/specimen/Montserrat*/
 #define LV_FONT_MONTSERRAT_8  0
 #define LV_FONT_MONTSERRAT_10 0
-#define LV_FONT_MONTSERRAT_12 0
+#define LV_FONT_MONTSERRAT_12 1
 #define LV_FONT_MONTSERRAT_14 1
 #define LV_FONT_MONTSERRAT_16 0
 #define LV_FONT_MONTSERRAT_18 0
@@ -518,6 +518,9 @@
 /*-----------
  * Widgets
  *----------*/
+
+// #define LV_USE_ANALOGCLOCK 0
+
 #define LV_USE_ANIMIMG    1
 
 #define LV_USE_CALENDAR   1
@@ -537,6 +540,8 @@
 #define LV_USE_CHART      1
 
 #define LV_USE_COLORWHEEL 1
+
+#define LV_USE_DCLOCK 1
 
 #define LV_USE_IMGBTN     1
 

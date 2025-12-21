@@ -82,19 +82,28 @@ void lvglTask1ms(void const * argument){
   }
 }
 
+extern int screen_digital_clock_1_hour_value;
+extern int screen_digital_clock_1_min_value;
+extern int screen_digital_clock_1_sec_value;
 void lvglTaskRun(void const * argument){
   int32_t cnt = 0;
 
+  printf("%d:%02d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   while(1){
     lv_task_handler(); // 让LVGL处理任务
     osDelay(5);         // 延时5ms
     cnt++;
     cnt %= 200;
-    if(cnt == 0){
-      HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-    }
+    // if(cnt == 0){
+    //   HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    // }
   }
 }
+
+#include "gui_guider.h"
+#include "events_init.h"
+#include "widgets_init.h"
+lv_ui guider_ui;
 /* USER CODE END 0 */
 
 /**
@@ -149,27 +158,34 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+  // osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  // defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   osThreadDef(lgvlTaskInc, lvglTask1ms, osPriorityNormal, 0, 128);
   osThreadCreate(osThread(lgvlTaskInc), NULL);
-  osThreadDef(lvglTaskRun, lvglTaskRun, osPriorityNormal, 0, 1024);
+  osThreadDef(lvglTaskRun, lvglTaskRun, osPriorityNormal, 0, 2048);
   osThreadCreate(osThread(lvglTaskRun), NULL);
   printf("RTOS Kernel Started\r\n");
+  printf("%d:%02d:%02d\r\n", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   lv_init();               // 初始化LVGL库
   lv_port_disp_init();     // 初始化显示驱动
   lv_port_indev_init();   // 初始化输入设备驱动
+  printf("%d:%02d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   // 初始化lvgl demo
-  lv_demo_widgets();
+  // lv_demo_widgets();
+  setup_ui(&guider_ui); // 初始化ui
+  init_keyboard(&guider_ui); // 初始化键盘
+  setup_scr_screen(&guider_ui); // 设置屏幕
+  custom_init(&guider_ui);
   // LCD_Init();
   // POINT_COLOR=RED;
   // LCD_Clear(WHITE);
   // POINT_COLOR=RED;
   // LCD_ShowString(30,40,210,24,24,"WarShip STM32 ^_^");
 
+  printf("%d:%02d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
