@@ -13,6 +13,7 @@
 #include "events_init.h"
 #include "widgets_init.h"
 #include "custom.h"
+#include "lv_menu_private.h"
 
 
 
@@ -31,7 +32,7 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write codes screen_menu_1
     ui->screen_menu_1 = lv_menu_create(ui->screen);
-    lv_obj_set_pos(ui->screen_menu_1, 4, 5);
+    lv_obj_set_pos(ui->screen_menu_1, 4, 6);
     lv_obj_set_size(ui->screen_menu_1, 473, 315);
     lv_obj_set_scrollbar_mode(ui->screen_menu_1, LV_SCROLLBAR_MODE_OFF);
 
@@ -166,10 +167,17 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write codes screen_led_1
     ui->screen_led_1 = lv_led_create(ui->screen_menu_1_subpage_1_cont);
-    lv_obj_set_pos(ui->screen_led_1, 147, 86);
+    lv_obj_set_pos(ui->screen_led_1, 66, 86);
     lv_obj_set_size(ui->screen_led_1, 40, 40);
     lv_led_set_brightness(ui->screen_led_1, 255);
     lv_led_set_color(ui->screen_led_1, lv_color_hex(0x00a1b5));
+
+    //Write codes screen_led_2
+    ui->screen_led_2 = lv_led_create(ui->screen_menu_1_subpage_1_cont);
+    lv_obj_set_pos(ui->screen_led_2, 232, 92);
+    lv_obj_set_size(ui->screen_led_2, 40, 40);
+    lv_led_set_brightness(ui->screen_led_2, 255);
+    lv_led_set_color(ui->screen_led_2, lv_color_hex(0x00a1b5));
 
 
 

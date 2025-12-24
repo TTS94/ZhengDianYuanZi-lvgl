@@ -35,6 +35,7 @@ typedef struct
 	lv_obj_t *screen_btn_1;
 	lv_obj_t *screen_btn_1_label;
 	lv_obj_t *screen_led_1;
+	lv_obj_t *screen_led_2;
 	lv_obj_t *screen_digital_clock_1;
 	lv_obj_t *screen_datetext_1;
 }lv_ui;
