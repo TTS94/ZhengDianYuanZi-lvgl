@@ -154,11 +154,11 @@ CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction
 CFLAGS += -DRAPIDJSON_HAS_STDINT_H=1
 CFLAGS += -DRAPIDJSON_RAPIDJSON_H_
 CFLAGS += -DLV_CONF_INCLUDE_SIMPLE
+CFLAGS += -std=c99
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
 endif
-
 
 # Generate dependency information
 CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
