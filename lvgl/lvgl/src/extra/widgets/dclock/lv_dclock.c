@@ -166,7 +166,6 @@ void lv_dclock_set_text_fmt(lv_obj_t * obj, const char * fmt, ...)
     dclock->static_txt = 0; /*Now the text is dynamically allocated*/
 
     lv_dclock_refr_text(obj);
-    printf("The text is: %s\n", dclock->text);
 }
 
 /*=====================
@@ -436,12 +435,9 @@ static void lv_dclock_refr_text(lv_obj_t * obj)
 
     lv_txt_get_size(&size, dclock->text, font, letter_space, line_space, max_w, flag);
 
-    // lv_obj_refresh_self_size(obj);
-    printf("lv_obj_refresh_self_size(): %d\r\n", lv_obj_refresh_self_size(obj));
+    lv_obj_refresh_self_size(obj);
 
     lv_obj_invalidate(obj);
-    printf("%s line%d, The text is: %s\n", __func__, __LINE__,dclock->text);
-
 }
 
 #endif

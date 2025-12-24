@@ -146,7 +146,7 @@ void screen_digital_clock_1_timer(lv_timer_t *timer)
     if (lv_obj_is_valid(guider_ui.screen_digital_clock_1))
     {
         lv_dclock_set_text_fmt(guider_ui.screen_digital_clock_1, "%d:%02d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
-        printf("%d:%02d:%02d\r\n", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
+        // printf("%d:%02d:%02d\r\n", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
     }
 }
 
