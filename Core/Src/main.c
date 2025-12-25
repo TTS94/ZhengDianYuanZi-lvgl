@@ -81,14 +81,9 @@ void lvglTask1ms(void const * argument){
     }
   }
 }
-
-extern int screen_digital_clock_1_hour_value;
-extern int screen_digital_clock_1_min_value;
-extern int screen_digital_clock_1_sec_value;
 void lvglTaskRun(void const * argument){
   int32_t cnt = 0;
 
-  printf("%d:%02d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   while(1){
     lv_task_handler(); // 让LVGL处理任务
     osDelay(5);         // 延时5ms
@@ -168,11 +163,9 @@ int main(void)
   osThreadDef(lvglTaskRun, lvglTaskRun, osPriorityNormal, 0, 2048);
   osThreadCreate(osThread(lvglTaskRun), NULL);
   printf("RTOS Kernel Started\r\n");
-  printf("%d:%02d:%02d\r\n", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   lv_init();               // 初始化LVGL库
   lv_port_disp_init();     // 初始化显示驱动
   lv_port_indev_init();   // 初始化输入设备驱动
-  printf("%d:%02d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   // 初始化lvgl demo
   // lv_demo_widgets();
   setup_ui(&guider_ui); // 初始化ui
@@ -185,7 +178,6 @@ int main(void)
   // POINT_COLOR=RED;
   // LCD_ShowString(30,40,210,24,24,"WarShip STM32 ^_^");
 
-  printf("%d:%02d:%02d", screen_digital_clock_1_hour_value, screen_digital_clock_1_min_value, screen_digital_clock_1_sec_value);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */

@@ -1,1 +1,1 @@
-GEN_CSRCS += _battery_RGB565A8_200x74.c _radio_bg_RGB565A8_300x81.c _radio_play_RGB565A8_91x91.c _phone_card_RGB565A8_37x36.c _end_call_RGB565A8_37x36.c _delete_RGB565A8_28x26.c _mode1_RGB565A8_100x100.c _mode2_RGB565A8_100x100.c _mode3_RGB565A8_100x100.c
+GEN_CSRCS += _1f60d_RGB565A8_100x100.c

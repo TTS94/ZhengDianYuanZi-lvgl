@@ -14,6 +14,22 @@
 #include <stdio.h>
 #include "lvgl.h"
 #include "custom.h"
+// #include "ui_helpers.h"  // 包含图片声明
+
+static bool show_first = true;
+
+static void switch_image_timer_cb(lv_timer_t * t)
+{
+    lv_obj_t * img = guider_ui.screen_img_1;  // 替换为你的 Image ID
+
+    if (show_first) {
+        lv_img_set_src(img, &_1f60e_RGB565A8_100x100);
+        show_first = false;
+    } else {
+        lv_img_set_src(img, &_1f60d_RGB565A8_100x100);
+        show_first = true;
+    }
+}
 
 /*********************
  *      DEFINES
@@ -82,5 +98,6 @@ void custom_init(lv_ui *ui)
     /* Add your codes here */
     // lv_obj_add_event_cb(ui->screen_btn_1, btn_event_cb1, LV_EVENT_SHORT_CLICKED, NULL);
     // lv_obj_add_event_cb(ui->screen_btn_1, btn_event_cb2, LV_EVENT_LONG_PRESSED, NULL);
+    lv_timer_create(switch_image_timer_cb, 2000, NULL); // 每2秒切换
 }
 
