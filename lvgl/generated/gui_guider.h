@@ -19,25 +19,46 @@ extern "C" {
 typedef struct
 {
   
-	lv_obj_t *screen;
-	bool screen_del;
-	lv_obj_t *screen_menu_1;
-	lv_obj_t *screen_menu_1_sidebar_page;
-	lv_obj_t *screen_menu_1_subpage_1_cont;
-	lv_obj_t *screen_menu_1_cont_1;
-	lv_obj_t *screen_menu_1_label_1;
-	lv_obj_t *screen_menu_1_subpage_2_cont;
-	lv_obj_t *screen_menu_1_cont_2;
-	lv_obj_t *screen_menu_1_label_2;
-	lv_obj_t *screen_menu_1_subpage_3_cont;
-	lv_obj_t *screen_menu_1_cont_3;
-	lv_obj_t *screen_menu_1_label_3;
-	lv_obj_t *screen_btn_1;
-	lv_obj_t *screen_btn_1_label;
-	lv_obj_t *screen_led_1;
-	lv_obj_t *screen_led_2;
-	lv_obj_t *screen_digital_clock_1;
-	lv_obj_t *screen_datetext_1;
+	lv_obj_t *menuDemo;
+	bool menuDemo_del;
+	lv_obj_t *menuDemo_dashboard_menu;
+	lv_obj_t *menuDemo_dashboard_menu_sidebar_page;
+	lv_obj_t *menuDemo_dashboard_menu_subpage_1_cont;
+	lv_obj_t *menuDemo_dashboard_menu_cont_1;
+	lv_obj_t *menuDemo_dashboard_menu_label_1;
+	lv_obj_t *menuDemo_dashboard_menu_subpage_2_cont;
+	lv_obj_t *menuDemo_dashboard_menu_cont_2;
+	lv_obj_t *menuDemo_dashboard_menu_label_2;
+	lv_obj_t *menuDemo_dashboard_menu_subpage_3_cont;
+	lv_obj_t *menuDemo_dashboard_menu_cont_3;
+	lv_obj_t *menuDemo_dashboard_menu_label_3;
+	lv_obj_t *menuDemo_dashboard_menu_subpage_4_cont;
+	lv_obj_t *menuDemo_dashboard_menu_cont_4;
+	lv_obj_t *menuDemo_dashboard_menu_label_4;
+	lv_obj_t *menuDemo_battery_label;
+	lv_obj_t *menuDemo_battery_img;
+	lv_obj_t *menuDemo_battery_spangroup;
+	lv_span_t *menuDemo_battery_spangroup_span;
+	lv_obj_t *menuDemo_radio_slider;
+	lv_obj_t *menuDemo_radio_spangroup;
+	lv_span_t *menuDemo_radio_spangroup_span;
+	lv_obj_t *menuDemo_radio_label;
+	lv_obj_t *menuDemo_phone_label;
+	lv_obj_t *menuDemo_phone_btnm;
+	lv_obj_t *menuDemo_imgbtn_call;
+	lv_obj_t *menuDemo_imgbtn_call_label;
+	lv_obj_t *menuDemo_btn_del;
+	lv_obj_t *menuDemo_btn_del_label;
+	lv_obj_t *menuDemo_phone_calling;
+	lv_obj_t *menuDemo_phone_callnum;
+	lv_obj_t *menuDemo_tileview_1;
+	lv_obj_t *menuDemo_tileview_1_tile;
+	lv_obj_t *menuDemo_tileview_1_tile_1;
+	lv_obj_t *menuDemo_tileview_1_tile_2;
+	lv_obj_t *menuDemo_img_mode_1;
+	lv_obj_t *menuDemo_img_mode_2;
+	lv_obj_t *menuDemo_img_mode_3;
+	lv_obj_t *menuDemo_conditioner_label;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -65,11 +86,31 @@ void init_keyboard(lv_ui *ui);
 extern lv_ui guider_ui;
 
 
-void setup_scr_screen(lv_ui *ui);
+void setup_scr_menuDemo(lv_ui *ui);
+LV_IMAGE_DECLARE(_battery_RGB565A8_200x74);
 
-LV_FONT_DECLARE(lv_font_montserratMedium_12)
-LV_FONT_DECLARE(lv_font_montserratMedium_14)
+LV_IMAGE_DECLARE(_radio_bg_RGB565A8_300x81);
+
+LV_IMAGE_DECLARE(_radio_play_RGB565A8_91x91);
+LV_IMAGE_DECLARE(_phone_card_RGB565A8_37x36);
+LV_IMAGE_DECLARE(_end_call_RGB565A8_37x36);
+
+LV_IMAGE_DECLARE(_delete_RGB565A8_28x26);
+LV_IMAGE_DECLARE(_mode1_RGB565A8_100x100);
+LV_IMAGE_DECLARE(_mode2_RGB565A8_100x100);
+LV_IMAGE_DECLARE(_mode3_RGB565A8_100x100);
+
 LV_FONT_DECLARE(lv_font_montserratMedium_16)
+LV_FONT_DECLARE(lv_font_montserratMedium_18)
+LV_FONT_DECLARE(lv_font_montserratMedium_20)
+LV_FONT_DECLARE(lv_font_Alatsi_Regular_20)
+LV_FONT_DECLARE(lv_font_Alatsi_Regular_45)
+LV_FONT_DECLARE(lv_font_Alatsi_Regular_40)
+LV_FONT_DECLARE(lv_font_montserratMedium_12)
+LV_FONT_DECLARE(lv_font_Alatsi_Regular_15)
+LV_FONT_DECLARE(lv_font_Alatsi_Regular_23)
+LV_FONT_DECLARE(lv_font_Alatsi_Regular_35)
+LV_FONT_DECLARE(lv_font_montserratMedium_28)
 
 
 #ifdef __cplusplus
