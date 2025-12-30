@@ -31,7 +31,7 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write codes screen_cont_1
     ui->screen_cont_1 = lv_obj_create(ui->screen);
-    lv_obj_set_pos(ui->screen_cont_1, 1, 0);
+    lv_obj_set_pos(ui->screen_cont_1, 0, 0);
     lv_obj_set_size(ui->screen_cont_1, 480, 320);
     lv_obj_set_scrollbar_mode(ui->screen_cont_1, LV_SCROLLBAR_MODE_OFF);
 
