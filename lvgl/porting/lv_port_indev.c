@@ -236,6 +236,10 @@ static void touchpad_get_xy(int32_t * x, int32_t * y)
     // printf("x1:%4d y1:%4d\r\n",x1,y1);
 
     // 线性映射到屏幕坐标
+    x1 = x1 > TOUCH_X_MAX ? TOUCH_X_MAX : x1;
+    x1 = x1 < TOUCH_X_MIN ? TOUCH_X_MIN : x1;
+    y1 = y1 > TOUCH_Y_MAX ? TOUCH_Y_MAX : y1;
+    y1 = y1 < TOUCH_Y_MIN ? TOUCH_Y_MIN : y1;
     x1 = (uint32_t)(LCD_WIDTH) * (x1 - TOUCH_X_MIN) / (TOUCH_X_MAX - TOUCH_X_MIN);
     y1 = (uint32_t)(LCD_HEIGHT) * (y1 - TOUCH_Y_MIN) / (TOUCH_Y_MAX - TOUCH_Y_MIN);
     // 边界保护

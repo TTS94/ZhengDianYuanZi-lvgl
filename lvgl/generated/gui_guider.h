@@ -34,7 +34,9 @@ typedef struct
 	lv_obj_t *screen_voltageVal;
 	lv_obj_t *screen_voltageUnit;
 	lv_obj_t *screen_voltageFlag;
+	lv_obj_t *screen_digital_clock_1;
 	lv_obj_t *screen_img_1;
+	lv_obj_t *screen_cont_2;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -63,8 +65,7 @@ extern lv_ui guider_ui;
 
 
 void setup_scr_screen(lv_ui *ui);
-LV_IMAGE_DECLARE(_1f60d_RGB565A8_100x100);
-LV_IMAGE_DECLARE(_1f60e_RGB565A8_100x100);
+LV_IMAGE_DECLARE(_1f61f_RGB565A8_100x100);
 
 LV_FONT_DECLARE(lv_font_montserratMedium_16)
 

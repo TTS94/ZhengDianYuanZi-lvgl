@@ -16,6 +16,9 @@ extern "C" {
 #include "gui_guider.h"
 #include "lv_menu_private.h"
 
+LV_IMAGE_DECLARE(_1f60e_RGB565A8_100x100);
+LV_IMAGE_DECLARE(_1f60d_RGB565A8_100x100);
+
 void custom_init(lv_ui *ui);
 
 #ifdef __cplusplus
