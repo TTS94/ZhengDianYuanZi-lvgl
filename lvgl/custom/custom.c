@@ -92,8 +92,8 @@ static void show_voltage(lv_timer_t * t)
     int     voltage = read_voltage();
     int     voltage_base = 4500;
     points[data_index].y = 80-(voltage-voltage_base)*60/600;
-    // lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%.3f", ((float)voltage/1000.0));
-    lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%d", voltage);
+    lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%.3f", ((float)voltage/1000.0));
+    // lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%d", voltage);
     // printf("%d\r\n", points[data_index].y);
 
     for(int i = 0; i < MAX_POINTS; i++){
@@ -114,7 +114,7 @@ void custom_init(lv_ui *ui)
     // printf("chart_area x1: %d, y1: %d, x2: %d, y2: %d\r\n", chart_area->coords.x1, chart_area->coords.y1,
     //         chart_area->coords.x2, chart_area->coords.y2);
     line = lv_line_create(chart_area);
-    lv_obj_set_size(line, 440, 80); // 比最大坐标稍大一些
+    lv_obj_set_size(line, 200, 80); // 比最大坐标稍大一些
     lv_obj_set_style_line_width(line, 2, 0); // 设置线宽为 2 像素
     lv_obj_set_style_line_color(line, lv_palette_main(LV_PALETTE_BLUE), 0);
     lv_obj_align(line, LV_ALIGN_BOTTOM_LEFT, 100, 0);
@@ -122,7 +122,7 @@ void custom_init(lv_ui *ui)
     /* Add your codes here */
     // lv_obj_add_event_cb(ui->screen_btn_1, btn_event_cb1, LV_EVENT_SHORT_CLICKED, NULL);
     // lv_obj_add_event_cb(ui->screen_btn_1, btn_event_cb2, LV_EVENT_LONG_PRESSED, NULL);
-    lv_timer_create(show_voltage, 300, NULL); // 每2秒切换
+    lv_timer_create(show_voltage, 500, NULL); // 每2秒切换
     lv_timer_create(switch_image_timer_cb, 1000, NULL); // 每2秒切换
 }
 

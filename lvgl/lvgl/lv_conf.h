@@ -483,7 +483,7 @@
 #define LV_ATTRIBUTE_EXTERN_DATA
 
 /* Use `float` as `lv_value_precise_t` */
-#define LV_USE_FLOAT            0
+#define LV_USE_FLOAT            1
 
 /*Enable matrix support
  *Requires `LV_USE_FLOAT = 1`*/
@@ -899,7 +899,7 @@
      * Requires `LV_USE_SYSMON = 1`*/
     #define LV_USE_PERF_MONITOR 1
     #if LV_USE_PERF_MONITOR
-        #define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
+        #define LV_USE_PERF_MONITOR_POS LV_ALIGN_RIGHT_MID
 
         /*0: Displays performance data on the screen, 1: Prints performance data using log.*/
         #define LV_USE_PERF_MONITOR_LOG_MODE 0
@@ -910,7 +910,7 @@
      * Requires `LV_USE_SYSMON = 1`*/
     #define LV_USE_MEM_MONITOR 1
     #if LV_USE_MEM_MONITOR
-        #define LV_USE_MEM_MONITOR_POS LV_ALIGN_BOTTOM_LEFT
+        #define LV_USE_MEM_MONITOR_POS LV_ALIGN_LEFT_MID
     #endif
 
 #endif /*LV_USE_SYSMON*/
