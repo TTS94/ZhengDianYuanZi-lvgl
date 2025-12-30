@@ -37,6 +37,8 @@ typedef struct
 	lv_obj_t *screen_digital_clock_1;
 	lv_obj_t *screen_img_1;
 	lv_obj_t *screen_cont_2;
+	lv_obj_t *screen_vol_num;
+	lv_obj_t *screen_vol_line;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);

@@ -70,7 +70,7 @@ int read_voltage(void)
     return fake_volt;
 }
 #include  <stdio.h>
-lv_obj_t * line = NULL;
+// lv_obj_t * line = NULL;
 static void show_voltage(lv_timer_t * t)
 {
     #define MAX_POINTS  250  // 最多显示50个点
@@ -93,16 +93,16 @@ static void show_voltage(lv_timer_t * t)
     }
     int     voltage = read_voltage();
     int     voltage_base = 4500;
-    points[data_index].y = 80-(voltage-voltage_base)*60/600;
+    points[data_index++].y = 80-(voltage-voltage_base)*60/600;
 
     char    buf[8];
     sprintf(buf, "%.3f", (float)voltage/1000.0f);
     lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%s", buf);
+    lv_label_set_text_fmt(guider_ui.screen_vol_num, "%d", data_index);
     // lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%d", voltage);
     // printf("%d\r\n", points[data_index].y);
-
-    data_index ++;
-    lv_line_set_points(line, points, data_index);
+    // lv_line_set_points(line, points, data_index);
+    lv_line_set_points(guider_ui.screen_vol_line, points, data_index);
 }
 
 void custom_init(lv_ui *ui)
@@ -111,15 +111,15 @@ void custom_init(lv_ui *ui)
 
 
 
-    lv_obj_t * chart_area = guider_ui.screen_cont_2;
+    // lv_obj_t * chart_area = guider_ui.screen_cont_2;
 
-    // printf("chart_area x1: %d, y1: %d, x2: %d, y2: %d\r\n", chart_area->coords.x1, chart_area->coords.y1,
-    //         chart_area->coords.x2, chart_area->coords.y2);
-    line = lv_line_create(chart_area);
-    lv_obj_set_size(line, 200, 80); // 比最大坐标稍大一些
-    lv_obj_set_style_line_width(line, 2, 0); // 设置线宽为 2 像素
-    lv_obj_set_style_line_color(line, lv_palette_main(LV_PALETTE_BLUE), 0);
-    lv_obj_align(line, LV_ALIGN_BOTTOM_LEFT, 100, 0);
+    // // printf("chart_area x1: %d, y1: %d, x2: %d, y2: %d\r\n", chart_area->coords.x1, chart_area->coords.y1,
+    // //         chart_area->coords.x2, chart_area->coords.y2);
+    // line = lv_line_create(chart_area);
+    // lv_obj_set_size(line, 200, 80); // 比最大坐标稍大一些
+    // lv_obj_set_style_line_width(line, 2, 0); // 设置线宽为 2 像素
+    // lv_obj_set_style_line_color(line, lv_palette_main(LV_PALETTE_BLUE), 0);
+    // lv_obj_align(line, LV_ALIGN_BOTTOM_LEFT, 100, 0);
 
     /* Add your codes here */
     // lv_obj_add_event_cb(ui->screen_btn_1, btn_event_cb1, LV_EVENT_SHORT_CLICKED, NULL);

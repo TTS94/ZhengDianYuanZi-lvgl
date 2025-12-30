@@ -349,7 +349,7 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write codes screen_img_1
     ui->screen_img_1 = lv_image_create(ui->screen_cont_1);
-    lv_obj_set_pos(ui->screen_img_1, 190, 110);
+    lv_obj_set_pos(ui->screen_img_1, 199, 109);
     lv_obj_set_size(ui->screen_img_1, 100, 100);
     lv_obj_add_flag(ui->screen_img_1, LV_OBJ_FLAG_CLICKABLE);
     lv_image_set_src(ui->screen_img_1, &_1f60e_RGB565A8_100x100);
@@ -380,6 +380,44 @@ void setup_scr_screen(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->screen_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->screen_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->screen_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes screen_vol_num
+    ui->screen_vol_num = lv_label_create(ui->screen_cont_2);
+    lv_obj_set_pos(ui->screen_vol_num, 390, 35);
+    lv_obj_set_size(ui->screen_vol_num, 60, 15);
+    lv_label_set_text(ui->screen_vol_num, "0");
+    lv_label_set_long_mode(ui->screen_vol_num, LV_LABEL_LONG_WRAP);
+
+    //Write style for screen_vol_num, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_vol_num, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->screen_vol_num, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->screen_vol_num, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->screen_vol_num, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->screen_vol_num, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->screen_vol_num, 99, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui->screen_vol_num, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_grad_dir(ui->screen_vol_num, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->screen_vol_num, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes screen_vol_line
+    ui->screen_vol_line = lv_line_create(ui->screen_cont_2);
+    lv_obj_set_pos(ui->screen_vol_line, 105, 2);
+    lv_obj_set_size(ui->screen_vol_line, 250, 80);
+    static lv_point_precise_t screen_vol_line[] = {};
+    lv_line_set_points(ui->screen_vol_line, screen_vol_line, 0);
+
+    //Write style for screen_vol_line, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_line_width(ui->screen_vol_line, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_line_color(ui->screen_vol_line, lv_color_hex(0xff003b), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_line_opa(ui->screen_vol_line, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_line_rounded(ui->screen_vol_line, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of screen.
 
