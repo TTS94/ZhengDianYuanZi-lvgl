@@ -69,11 +69,10 @@ int read_voltage(void)
     // if (fake_volt > 3300) fake_volt = 3300;
     return fake_volt;
 }
-
+#include  <stdio.h>
 lv_obj_t * line = NULL;
 static void show_voltage(lv_timer_t * t)
 {
-
     #define MAX_POINTS  250  // 最多显示50个点
     static uint8_t      data_index = 0;
     static bool         data_full = false;
@@ -81,6 +80,9 @@ static void show_voltage(lv_timer_t * t)
 
     if(points == NULL){
         points = lv_malloc(MAX_POINTS*sizeof(points[0]));
+        for(int i = 0; i < MAX_POINTS; i++){
+            points[i].x = i;
+        }
     }
     data_full = data_index >= MAX_POINTS ? true : false;
     data_index = data_index >= MAX_POINTS ? MAX_POINTS-1 : data_index;
@@ -92,13 +94,13 @@ static void show_voltage(lv_timer_t * t)
     int     voltage = read_voltage();
     int     voltage_base = 4500;
     points[data_index].y = 80-(voltage-voltage_base)*60/600;
-    lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%.3f", ((float)voltage/1000.0));
+
+    char    buf[8];
+    sprintf(buf, "%.3f", (float)voltage/1000.0f);
+    lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%s", buf);
     // lv_label_set_text_fmt(guider_ui.screen_voltageVal, "%d", voltage);
     // printf("%d\r\n", points[data_index].y);
 
-    for(int i = 0; i < MAX_POINTS; i++){
-        points[i].x = i;
-    }
     data_index ++;
     lv_line_set_points(line, points, data_index);
 }

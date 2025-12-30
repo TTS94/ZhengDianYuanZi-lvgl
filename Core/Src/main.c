@@ -28,6 +28,7 @@
 #include "lvgl.h"
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
+#include "custom.h"
 // #include "lv_demo_widgets.h"
 /* USER CODE END Includes */
 
@@ -163,6 +164,7 @@ int main(void)
   osThreadDef(lvglTaskRun, lvglTaskRun, osPriorityNormal, 0, 2048);
   osThreadCreate(osThread(lvglTaskRun), NULL);
   printf("RTOS Kernel Started\r\n");
+  printf("test: %f\r\n", 0.15522);
   lv_init();               // 初始化LVGL库
   lv_port_disp_init();     // 初始化显示驱动
   lv_port_indev_init();   // 初始化输入设备驱动

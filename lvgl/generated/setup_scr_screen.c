@@ -31,7 +31,7 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write codes screen_cont_1
     ui->screen_cont_1 = lv_obj_create(ui->screen);
-    lv_obj_set_pos(ui->screen_cont_1, 0, 0);
+    lv_obj_set_pos(ui->screen_cont_1, 1, 0);
     lv_obj_set_size(ui->screen_cont_1, 480, 320);
     lv_obj_set_scrollbar_mode(ui->screen_cont_1, LV_SCROLLBAR_MODE_OFF);
 
@@ -40,7 +40,7 @@ void setup_scr_screen(lv_ui *ui)
     lv_obj_set_style_border_opa(ui->screen_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_color(ui->screen_cont_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui->screen_cont_1, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->screen_cont_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_cont_1, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->screen_cont_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_cont_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_cont_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -58,10 +58,10 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write style for screen_Power, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->screen_Power, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->screen_Power, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->screen_Power, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui->screen_Power, 110, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui->screen_Power, lv_color_hex(0xff9600), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui->screen_Power, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->screen_Power, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_Power, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->screen_Power, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_Power, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_Power, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -148,10 +148,10 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write style for screen_Current, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->screen_Current, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->screen_Current, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->screen_Current, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui->screen_Current, 90, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui->screen_Current, lv_color_hex(0x00fffc), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui->screen_Current, LV_BORDER_SIDE_BOTTOM | LV_BORDER_SIDE_RIGHT | LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->screen_Current, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_Current, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->screen_Current, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_Current, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_Current, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -238,10 +238,10 @@ void setup_scr_screen(lv_ui *ui)
 
     //Write style for screen_Voltage, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->screen_Voltage, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_opa(ui->screen_Voltage, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(ui->screen_Voltage, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui->screen_Voltage, 60, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui->screen_Voltage, lv_color_hex(0xff00e9), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui->screen_Voltage, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->screen_Voltage, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_Voltage, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->screen_Voltage, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_Voltage, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_Voltage, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -323,8 +323,8 @@ void setup_scr_screen(lv_ui *ui)
     //Write codes screen_digital_clock_1
     static bool screen_digital_clock_1_timer_enabled = false;
     ui->screen_digital_clock_1 = lv_label_create(ui->screen_cont_1);
-    lv_obj_set_pos(ui->screen_digital_clock_1, 175, 57);
-    lv_obj_set_size(ui->screen_digital_clock_1, 130, 36);
+    lv_obj_set_pos(ui->screen_digital_clock_1, 183, 58);
+    lv_obj_set_size(ui->screen_digital_clock_1, 121, 30);
     lv_label_set_text(ui->screen_digital_clock_1, "11:25:50");
     if (!screen_digital_clock_1_timer_enabled) {
         lv_timer_create(screen_digital_clock_1_timer, 1000, NULL);
@@ -332,13 +332,13 @@ void setup_scr_screen(lv_ui *ui)
     }
 
     //Write style for screen_digital_clock_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->screen_digital_clock_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_color(ui->screen_digital_clock_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_digital_clock_1, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->screen_digital_clock_1, lv_color_hex(0xff0027), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->screen_digital_clock_1, &lv_font_montserratMedium_16, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->screen_digital_clock_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->screen_digital_clock_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->screen_digital_clock_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->screen_digital_clock_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->screen_digital_clock_1, 97, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_digital_clock_1, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_digital_clock_1, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->screen_digital_clock_1, 7, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -348,11 +348,11 @@ void setup_scr_screen(lv_ui *ui)
     lv_obj_set_style_shadow_width(ui->screen_digital_clock_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes screen_img_1
-    ui->screen_img_1 = lv_image_create(ui->screen);
+    ui->screen_img_1 = lv_image_create(ui->screen_cont_1);
     lv_obj_set_pos(ui->screen_img_1, 190, 110);
     lv_obj_set_size(ui->screen_img_1, 100, 100);
     lv_obj_add_flag(ui->screen_img_1, LV_OBJ_FLAG_CLICKABLE);
-    lv_image_set_src(ui->screen_img_1, &_1f61f_RGB565A8_100x100);
+    lv_image_set_src(ui->screen_img_1, &_1f60e_RGB565A8_100x100);
     lv_image_set_pivot(ui->screen_img_1, 50,50);
     lv_image_set_rotation(ui->screen_img_1, 0);
 
@@ -361,9 +361,9 @@ void setup_scr_screen(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->screen_img_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes screen_cont_2
-    ui->screen_cont_2 = lv_obj_create(ui->screen);
-    lv_obj_set_pos(ui->screen_cont_2, 14, 225);
-    lv_obj_set_size(ui->screen_cont_2, 446, 83);
+    ui->screen_cont_2 = lv_obj_create(ui->screen_cont_1);
+    lv_obj_set_pos(ui->screen_cont_2, 10, 225);
+    lv_obj_set_size(ui->screen_cont_2, 460, 85);
     lv_obj_set_scrollbar_mode(ui->screen_cont_2, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for screen_cont_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
@@ -371,7 +371,7 @@ void setup_scr_screen(lv_ui *ui)
     lv_obj_set_style_border_opa(ui->screen_cont_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_color(ui->screen_cont_2, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui->screen_cont_2, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->screen_cont_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_cont_2, 15, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->screen_cont_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_cont_2, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_cont_2, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);

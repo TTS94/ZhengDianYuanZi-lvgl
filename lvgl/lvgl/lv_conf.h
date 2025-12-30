@@ -53,7 +53,7 @@
 
 #if LV_USE_STDLIB_MALLOC == LV_STDLIB_BUILTIN
     /*Size of the memory available for `lv_malloc()` in bytes (>= 2kB)*/
-    #define LV_MEM_SIZE (40 * 1024U)          /*[bytes]*/
+    #define LV_MEM_SIZE (35 * 1024U)          /*[bytes]*/
 
     /*Size of the memory expand for `lv_malloc()` in bytes*/
     #define LV_MEM_POOL_EXPAND_SIZE 0
@@ -483,7 +483,7 @@
 #define LV_ATTRIBUTE_EXTERN_DATA
 
 /* Use `float` as `lv_value_precise_t` */
-#define LV_USE_FLOAT            1
+#define LV_USE_FLOAT            0
 
 /*Enable matrix support
  *Requires `LV_USE_FLOAT = 1`*/
@@ -732,7 +732,7 @@
 /*File system interfaces for common APIs */
 
 /*Setting a default driver letter allows skipping the driver prefix in filepaths*/
-#define LV_FS_DEFAULT_DRIVE_LETTER '\0'
+#define LV_FS_DEFAULT_DRIVER_LETTER '\0'
 
 /*API for fopen, fread, etc*/
 #define LV_USE_FS_STDIO 0

@@ -65,7 +65,7 @@ extern lv_ui guider_ui;
 
 
 void setup_scr_screen(lv_ui *ui);
-LV_IMAGE_DECLARE(_1f61f_RGB565A8_100x100);
+LV_IMAGE_DECLARE(_1f60e_RGB565A8_100x100);
 
 LV_FONT_DECLARE(lv_font_montserratMedium_16)
 

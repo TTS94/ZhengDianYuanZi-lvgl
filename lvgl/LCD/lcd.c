@@ -2143,8 +2143,10 @@ void LCD_Fill(uint16_t sx,uint16_t sy,uint16_t ex,uint16_t ey,uint16_t color)
 //color:Ҫ������ɫ
 void LCD_Color_Fill(uint16_t sx, uint16_t sy, uint16_t ex, uint16_t ey, uint16_t *color)
 {
-    uint16_t height, width;
-    uint16_t i, j;
+    uint16_t    height, width;
+    uint16_t    i, j;
+    uint16_t    *ptr = color;
+
     width = ex - sx + 1;            //�õ����Ŀ���
     height = ey - sy + 1;           //�߶�
 
@@ -2155,7 +2157,8 @@ void LCD_Color_Fill(uint16_t sx, uint16_t sy, uint16_t ex, uint16_t ey, uint16_t
 
         for (j = 0; j < width; j++)
         {
-            LCD->LCD_RAM=color[i * width + j];  //д������
+            // LCD->LCD_RAM=color[i * width + j];  //д������
+            LCD->LCD_RAM = *ptr++;
         }
     }
 }

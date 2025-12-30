@@ -23,7 +23,7 @@ TARGET = ZhengDianYuanZi
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Og
+OPT = -Os
 
 
 #######################################
@@ -151,10 +151,8 @@ C_INCLUDES += $(LVGL_INC_FLAGS)
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
 CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
-CFLAGS += -DRAPIDJSON_HAS_STDINT_H=1
-CFLAGS += -DRAPIDJSON_RAPIDJSON_H_
 CFLAGS += -DLV_CONF_INCLUDE_SIMPLE
-CFLAGS += -std=c99
+CFLAGS += -u _printf_float
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
@@ -173,7 +171,8 @@ LDSCRIPT = STM32F103ZETx_FLASH.ld
 # libraries
 LIBS = -lc -lm -lnosys 
 LIBDIR = 
-LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+LDFLAGS = $(MCU) -specs=nano.specs -specs=nosys.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+LDFLAGS += -u _printf_float
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
