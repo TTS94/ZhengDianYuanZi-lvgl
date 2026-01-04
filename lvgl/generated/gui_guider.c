@@ -82,11 +82,13 @@ void setup_bottom_layer(void)
 
 void setup_ui(lv_ui *ui)
 {
+    printf("%s Start!\r\n", __func__);
     setup_bottom_layer();
     init_scr_del_flag(ui);
     init_keyboard(ui);
     setup_scr_screen(ui);
     lv_screen_load(ui->screen);
+    printf("%s End!\r\n", __func__);
 }
 
 void video_play(lv_ui *ui)

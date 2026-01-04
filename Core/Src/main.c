@@ -29,6 +29,7 @@
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 #include "custom.h"
+#include "sram.h"
 // #include "lv_demo_widgets.h"
 /* USER CODE END Includes */
 
@@ -132,6 +133,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   MX_FSMC_Init();
+  SRAM_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -161,7 +163,7 @@ int main(void)
   /* add threads, ... */
   osThreadDef(lgvlTaskInc, lvglTask1ms, osPriorityNormal, 0, 128);
   osThreadCreate(osThread(lgvlTaskInc), NULL);
-  osThreadDef(lvglTaskRun, lvglTaskRun, osPriorityNormal, 0, 2048);
+  osThreadDef(lvglTaskRun, lvglTaskRun, osPriorityNormal, 0, 2*1024);
   osThreadCreate(osThread(lvglTaskRun), NULL);
   printf("RTOS Kernel Started\r\n");
   lv_init();               // 初始化LVGL库

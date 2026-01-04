@@ -74,10 +74,30 @@ void lv_free_core(void * p)
     free(p);
 }
 
+#include "FreeRTOSConfig.h"
+
 void lv_mem_monitor_core(lv_mem_monitor_t * mon_p)
 {
     /*Not supported*/
-    LV_UNUSED(mon_p);
+    // LV_UNUSED(mon_p);
+// 1. 设置总堆大小 (根据你的 FreeRTOS 配置)
+    mon_p->total_size = configTOTAL_HEAP_SIZE; 
+    
+    // 2. 获取当前剩余内存
+    mon_p->free_size = xPortGetFreeHeapSize(); 
+    
+    // 3. 计算已用空间
+    uint32_t used_size = mon_p->total_size - mon_p->free_size;
+    
+    // 4. 计算百分比
+    if(mon_p->total_size > 0) {
+        mon_p->used_pct = (used_size * 100) / mon_p->total_size;
+    } else {
+        mon_p->used_pct = 0;
+    }
+    
+    // 5. 最大消耗记录（如果支持，不支持可设为 0）
+    mon_p->max_used = 0;
     return;
 }
 

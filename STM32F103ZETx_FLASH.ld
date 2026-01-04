@@ -55,14 +55,15 @@ ENTRY(Reset_Handler)
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM) + LENGTH(RAM);    /* end of RAM */
 /* Generate a link error if heap and stack don't fit into RAM */
-_Min_Heap_Size = 0x800;      /* required amount of heap  */
+_Min_Heap_Size = 0x400;      /* required amount of heap  */
 _Min_Stack_Size = 0x800; /* required amount of stack */
 
 /* Specify the memory areas */
 MEMORY
 {
-RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 64K
-FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 512K
+RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 64K
+PSRAM (rx)      : ORIGIN = 0x68000000, LENGTH = 1024K
+FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 512K
 }
 
 /* Define output sections */
@@ -162,6 +163,15 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
+  /* Initialized data sections goes into RAM, load LMA copy after code */
+  .psram : 
+  {
+    . = ALIGN(4);
+    *(.psram)           /* .data sections */
+    *(.psram*)          /* .data* sections */
+    . = ALIGN(4);
+  } > PSRAM
+
   /* User_heap_stack section, used to check that there is enough RAM left */
   ._user_heap_stack :
   {
@@ -172,8 +182,6 @@ SECTIONS
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >RAM
-
-  
 
   /* Remove information from the standard libraries */
   /DISCARD/ :

@@ -107,9 +107,10 @@ static void show_voltage(lv_timer_t * t)
 
 void custom_init(lv_ui *ui)
 {
+    printf("%s Start!\r\n", __func__);
+
+
     lv_rand_set_seed(1234);
-
-
 
     // lv_obj_t * chart_area = guider_ui.screen_cont_2;
 
@@ -124,7 +125,8 @@ void custom_init(lv_ui *ui)
     /* Add your codes here */
     // lv_obj_add_event_cb(ui->screen_btn_1, btn_event_cb1, LV_EVENT_SHORT_CLICKED, NULL);
     // lv_obj_add_event_cb(ui->screen_btn_1, btn_event_cb2, LV_EVENT_LONG_PRESSED, NULL);
-    lv_timer_create(show_voltage, 500, NULL); // 每2秒切换
-    lv_timer_create(switch_image_timer_cb, 1000, NULL); // 每2秒切换
+    // lv_timer_create(show_voltage, 500, NULL); // 每2秒切换
+    // lv_timer_create(switch_image_timer_cb, 1000, NULL); // 每2秒切换
+    printf("%s End!\r\n", __func__);
 }
 

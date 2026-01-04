@@ -21,16 +21,27 @@ typedef struct
   
 	lv_obj_t *screen;
 	bool screen_del;
+	lv_obj_t *screen_menu_1;
+	lv_obj_t *screen_menu_1_sidebar_page;
+	lv_obj_t *screen_menu_1_subpage_1_cont;
+	lv_obj_t *screen_menu_1_cont_1;
+	lv_obj_t *screen_menu_1_label_1;
+	lv_obj_t *screen_menu_1_subpage_2_cont;
+	lv_obj_t *screen_menu_1_cont_2;
+	lv_obj_t *screen_menu_1_label_2;
+	lv_obj_t *screen_menu_1_subpage_3_cont;
+	lv_obj_t *screen_menu_1_cont_3;
+	lv_obj_t *screen_menu_1_label_3;
 	lv_obj_t *screen_cont_1;
-	lv_obj_t *screen_Power;
+	lv_obj_t *screen_PowerPower;
 	lv_obj_t *screen_powerVal;
 	lv_obj_t *screen_powerUint;
 	lv_obj_t *screen_PowerFlag;
-	lv_obj_t *screen_Current;
+	lv_obj_t *screen_PowerCurrent;
 	lv_obj_t *screen_currentVal;
 	lv_obj_t *screen_currentUnit;
 	lv_obj_t *screen_currentFlag;
-	lv_obj_t *screen_Voltage;
+	lv_obj_t *screen_PowerVoltage;
 	lv_obj_t *screen_voltageVal;
 	lv_obj_t *screen_voltageUnit;
 	lv_obj_t *screen_voltageFlag;
@@ -39,6 +50,14 @@ typedef struct
 	lv_obj_t *screen_cont_2;
 	lv_obj_t *screen_vol_num;
 	lv_obj_t *screen_vol_line;
+	lv_obj_t *screen_analog_clock_1;
+	lv_obj_t *screen_analog_clock_1_hour_needle;
+	lv_obj_t *screen_analog_clock_1_min_needle;
+	lv_obj_t *screen_analog_clock_1_sec_needle;
+	lv_obj_t *screen_datetext_1;
+	lv_obj_t *screen_slider_1;
+	lv_obj_t *screen_meter_1;
+	lv_obj_t *screen_led_1;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -69,6 +88,8 @@ extern lv_ui guider_ui;
 void setup_scr_screen(lv_ui *ui);
 LV_IMAGE_DECLARE(_1f60e_RGB565A8_100x100);
 
+LV_FONT_DECLARE(lv_font_montserratMedium_12)
+LV_FONT_DECLARE(lv_font_montserratMedium_14)
 LV_FONT_DECLARE(lv_font_montserratMedium_16)
 
 
